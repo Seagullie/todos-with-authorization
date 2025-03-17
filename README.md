@@ -2,11 +2,12 @@
 
 Features overview:
 
-1. TODOs CRUD ✔
-2. TODOs Lists CRUD ✔
-3. Integration with backend ✔
-4. Authentication ❌
-5. Roles ❌
+1. Tailwind styling ✔
+2. TODOs CRUD ✔
+3. TODOs Lists CRUD ✔
+4. Integration with backend ✔
+5. Authentication ❌
+6. Roles ❌
 
 Backend can be found here:
 
