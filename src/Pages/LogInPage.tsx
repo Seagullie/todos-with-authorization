@@ -1,22 +1,44 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { AuthClient } from '../Data/AuthClient';
+import { BACKEND_SERVER_URL } from '../Constants/Constants';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
+const authClient = new AuthClient(BACKEND_SERVER_URL);
 
 const LogInPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://your-server.com/api/login', {
+      // const response = await axios.post('https://your-server.com/api/login', {
+      //   email,
+      //   password,
+      // });
+      const response = await authClient.login({
         email,
         password,
       });
-      const { token } = response.data;
+      const token = response.token;
+
+      // const { token } = response.data;
       Cookies.set('token', token);
       // Redirect or perform other actions after successful login
+
+      // display toast and redirect to todo_lists
+
+      toast.success('Log In Successful.');
+      setTimeout(() => {
+        // TODO: unhardcode
+        navigate('/todo_lists');
+      }, 2000);
     } catch (err) {
       setError('Invalid credentials. Please try again.');
     }
@@ -29,7 +51,10 @@ const LogInPage: React.FC = () => {
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -42,7 +67,10 @@ const LogInPage: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
@@ -62,6 +90,7 @@ const LogInPage: React.FC = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

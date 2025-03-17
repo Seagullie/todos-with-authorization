@@ -27,7 +27,7 @@ const ToDosContainer: React.FC = () => {
   }, []);
 
   if (!containerId) {
-    return null;
+    return <div>No container found with this id</div>;
   }
 
   // Create a new todo
