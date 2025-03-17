@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar";
 import Dashboard from "../Pages/Dashboard";
 import LogInPage from '../Pages/LogInPage';
 import SignUpPage from '../Pages/SignUpPage';
-import TodosList from '../Pages/TodosList';
+import TodosList from '../Pages/TodosLists';
 
 export const RouterNavigation: React.FC = () => {
     return (
