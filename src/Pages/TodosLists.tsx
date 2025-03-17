@@ -99,7 +99,7 @@ const TodosList: React.FC = () => {
             <p className="text-gray-700">{todo.description}</p>
             <div className="mt-2 space-x-2">
               <Link
-                to={`/todos/${todo._id}`}
+                to={`/todos_list/${todo._id}`}
                 className="text-indigo-600 hover:underline"
               >
                 View
